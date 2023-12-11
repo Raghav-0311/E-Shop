@@ -144,7 +144,7 @@ input, textarea{
     text-transform: uppercase;
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
 }
-    input[type="submit"]{
+input[type="submit"]{
     max-width: 16rem;
     margin-top: 2rem;
     background-color: ${({ theme }) => theme.colors.btn};
@@ -155,26 +155,25 @@ input, textarea{
     text-transform: uppercase;
     font-size: 1.8rem;
     cursor: pointer;
-    }
+}
 
 @media (max-width: ${({ theme }) => theme.media.tab}) {
     .container {
-    max-width: 130rem;
-    padding: 0 3.2rem;
-  }
-  }
-
-   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-       html {
-      font-size: 50%;
+        max-width: 130rem;
+        padding: 0 3.2rem;
     }
-
-.grid{
-  gap: 3.2rem;
 }
-      .grid-two-column , .grid-three-column, .grid-four-column{
-          grid-template-columns: 1fr;
-        }
-    }
 
+@media (max-width: ${({ theme }) => theme.media.mobile}) {
+    html {
+        font-size: 50%;
+    } 
+
+    .grid{
+        gap: 3.2rem;
+    }
+    .grid-two-column , .grid-three-column, .grid-four-column{
+        grid-template-columns: 1fr;
+    }
+}
 `;
