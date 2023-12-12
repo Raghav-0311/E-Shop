@@ -89,12 +89,12 @@ const Wrapper = styled.section`
 
     figure::after {
       content: "";
-      width: 50%;
-      height: 100%;
+      width: 100%;
+      height: 80%;
       left: 0;
       top: 10%;
       /* bottom: 10%; */
-      background-color: rgba(81, 56, 238, 0.4);
+      background-color: #E4D4F4;
     }
   }
 `;
