@@ -10,7 +10,7 @@ const Home = () => {
 }
 
 const Wrapper = styled.section`
-  
+  height: 100vh;
 `;
 
 export default Home
