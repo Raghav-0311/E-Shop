@@ -121,7 +121,7 @@ ${"" /* resuable code section  */}
      .intro-data {
       margin-bottom: 0;
       text-transform: uppercase;
-      color: #5138ee;
+      color: #7828C8;
     }
 
    .caption {
