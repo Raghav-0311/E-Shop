@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
       black: "#212529",
       helper: "#9353D3",
       bg: "#E4D4F4",
-      footer_bg: "#301050",
+      footer_bg: "#180828",
       btn: "#7828C8",
       shadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;",
       shadowSupport: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
@@ -46,6 +47,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
