@@ -11,7 +11,7 @@ const AboutHero = () => {
         <div className='grid grid-two-column'>
             {/* Hero Data */}
             <div className='hero-section-data'>
-                <h1>About Us</h1>
+                <h2 className='common-heading'>About Us</h2>
                 <p>
                 At E-Shop, we transcend the conventional boundaries of online retail. Born out of a passion for delivering unparalleled shopping experiences, we are more than just a virtual storefront – we are a destination where innovation meets inspiration.
                 </p>
@@ -51,11 +51,6 @@ const Wrapper = styled.section`
   .hero-section-data {
     p {
       margin: 2rem 0;
-    }
-
-    h1 {
-      text-transform: capitalize;
-      font-weight: bold;
     }
 
     .intro-data {
