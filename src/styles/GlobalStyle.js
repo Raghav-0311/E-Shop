@@ -142,6 +142,7 @@ input, textarea{
     color: ${({ theme }) => theme.colors.black};
     padding: 1.6rem 2.4rem;
     border: 1px solid ${({ theme }) => theme.colors.helper};
+    border-radius: 5px;
     background-color: #F2EAFA;
     text-transform: uppercase;
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
