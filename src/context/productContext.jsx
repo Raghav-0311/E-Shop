@@ -4,7 +4,8 @@
 // 3. consumer - to make it simple we use useContext Hook
 
 import axios from "axios";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import reducer from "../reducer/productReducer.js"
 
 // create context
 const AppContext = createContext();
@@ -13,21 +14,36 @@ const TOP_GADGETS = "/top_e_gadgets.json"; // Endpoint
 
 const API = `https://raghav-0311.github.io/eShop-API${TOP_GADGETS}`;
 
+const initialState = {
+    isLoading: false,
+    isError: false,
+    allProducts: [],
+    featureProducts: [],
+};
+
 // provider
 const AppProvider = ({ children }) => {
 
+    const [state, dispatch] = useReducer(reducer, initialState);
+
     const getProducts = async (url) => {
-        const res = await axios.get(url);
-        // console.log(res.data.data); // TESTED ✅
-        const allProducts = await res.data.data;
-        // console.log(allProducts); // TESTED ✅
+        dispatch({ type: "SET_LOADING" });
+        try {
+            const res = await axios.get(url);
+            // console.log(res.data.data); // TESTED ✅
+            const allProducts = await res.data.data;
+            // console.log(allProducts); // TESTED ✅
+            dispatch({ type: "SET_API_DATA", payload: allProducts });
+        } catch (error) {
+            dispatch({ type: "API_ERROR" });
+        }
     }
 
     useEffect(() => {
         getProducts(API);
     }, []);
 
-    return <AppContext.Provider value="Raghav">
+    return <AppContext.Provider value={{ ...state }}>
         {children}
     </AppContext.Provider>
 };
