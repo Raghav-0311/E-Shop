@@ -21,6 +21,10 @@ const SingleProduct = () => {
     getSingleProduct(`${API}?_id=${id}`);
   }, []);
 
+  if (isSingleLoading) {
+    return <div className="page_loading">Loading...</div>;
+  }
+
   return (
     <Wrapper>
       <PageNavigation title={name} />
