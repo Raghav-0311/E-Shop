@@ -1,10 +1,31 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useProductContext } from "../context/productContext";
+import PageNavigation from "../components/PageNavigation";
+
+const API = "https://e-shop-api-steel.vercel.app/api/products";
 
 const SingleProduct = () => {
+  const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
+  // console.log(singleProduct); // TESTED ✅
 
-  return <Wrapper>
-    <h1>Single Product Page</h1>
-  </Wrapper>;
+  const { id } = useParams();
+  // console.log(id); // TESTED ✅
+
+  const { _id, name, brand, price, description, category, featured, shipping, url, rating, productImages, specifications, features } = singleProduct;
+
+  // console.log(name); // TESTED ✅
+
+  useEffect(() => {
+    getSingleProduct(`${API}?_id=${id}`);
+  }, []);
+
+  return (
+    <Wrapper>
+      <PageNavigation title={name} />
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.section`
