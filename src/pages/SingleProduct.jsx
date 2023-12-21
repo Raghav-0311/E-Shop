@@ -10,6 +10,7 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Rating from "../components/Rating";
+import AddToCart from "../components/AddToCart";
 
 const API = "https://e-shop-api-steel.vercel.app/api/products";
 
@@ -133,6 +134,8 @@ const SingleProduct = () => {
                 <p>Display: <span>{specifications?.display}</span></p>
               </div>
             </div>
+            <hr />
+            <AddToCart singleProduct={singleProduct} />
           </div>
         </div>
       </Container>
@@ -262,8 +265,8 @@ const Wrapper = styled.section`
       max-width: 100%;
       width: 90%;
       /* height: 0.2rem; */
-      border: 0.1rem solid #000;
-      color: red;
+      border: 0.1rem solid ${({ theme }) => theme.colors.helper};
+      /* color: red; */
     }
   }
 
