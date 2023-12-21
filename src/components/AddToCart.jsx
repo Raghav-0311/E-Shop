@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
+import CartQuantityToggle from "./CartQuantityToggle";
+import { NavLink } from "react-router-dom";
+import { Button } from "../styles/Button";
 
 const AddToCart = ({ singleProduct }) => {
-    const { colors } = singleProduct;
-    const firstColor = colors ? colors[0] : "";
-    
-    const [color, setColor] = useState(firstColor);
+  const { colors } = singleProduct;
+  const firstColor = colors ? colors[0] : "";
+
+  const [color, setColor] = useState(firstColor);
+  const [quantity, setQuantity] = useState(1);
+  const stock = 5; // stock value must be present in database
+
+  const setQuantityDecrement = () => {
+    quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
+  };
+
+  const setQuantityIncrement = () => {
+    quantity < stock ? setQuantity(quantity + 1) : setQuantity(stock);
+  };
 
   return (
     <Wrapper>
@@ -27,6 +40,17 @@ const AddToCart = ({ singleProduct }) => {
           })}
         </p>
       </div>
+
+      {/* Add to Cart */}
+      <CartQuantityToggle
+        quantity={quantity}
+        setQuantityDecrement={setQuantityDecrement}
+        setQuantityIncrement={setQuantityIncrement}
+      />
+
+      <NavLink to="/cart">
+        <Button className="btn">Add To Cart</Button>
+      </NavLink>
     </Wrapper>
   );
 };
@@ -66,8 +90,7 @@ const Wrapper = styled.section`
     /* box-shadow: 2px 2px 5px #000 inset; */
   }
 
-  /* we can use it as a global one too  */
-  .amount-toggle {
+  .quantity-toggle {
     margin-top: 3rem;
     margin-bottom: 1rem;
     display: flex;
@@ -77,11 +100,11 @@ const Wrapper = styled.section`
 
     button {
       border: none;
-      background-color: #fff;
+      background-color: transparent;
       cursor: pointer;
     }
 
-    .amount-style {
+    .quantity-style {
       font-size: 2.4rem;
       color: ${({ theme }) => theme.colors.btn};
     }
