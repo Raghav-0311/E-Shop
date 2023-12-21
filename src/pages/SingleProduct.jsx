@@ -9,6 +9,7 @@ import FormatPrice from "../helpers/FormatPrice";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import Rating from "../components/Rating";
 
 const API = "https://e-shop-api-steel.vercel.app/api/products";
 
@@ -74,7 +75,7 @@ const SingleProduct = () => {
               </p>
             </div>
 
-            <p>{rating}</p>
+            <Rating rating={rating} />
 
             <p className="product-data-price">
               MRP:&nbsp;
