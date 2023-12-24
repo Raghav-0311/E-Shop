@@ -5,7 +5,7 @@ import { FaList } from "react-icons/fa";
 import { useFilterContext } from "../context/filterContext";
 
 const Sort = () => {
-  const { grid_view, setGridView, setListView } = useFilterContext();
+  const { filter_products, grid_view, setGridView, setListView } = useFilterContext();
 
   return (
     <Wrapper className="sort-section">
@@ -27,7 +27,9 @@ const Sort = () => {
       </div>
 
       {/* Second Column - Sort Component */}
-      <div className="product-data">Product Available</div>
+      <div className="product-data">
+        <p>{`${filter_products.length} Products Available`}</p>
+      </div>
 
       {/* Third Column - Sort Component */}
       <div className="sort-selection">Price Dropdown</div>
