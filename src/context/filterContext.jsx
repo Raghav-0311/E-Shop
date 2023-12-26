@@ -26,18 +26,20 @@ export const FilterContextProvider = ({ children }) => {
     }
 
     // To sort data acc to price
-    const sorting = () => {
-        dispatch({ type: "GET_SORT_VALUE" });
+    const sorting = (event) => {
+        let userValue = event.target.value;
+        dispatch({ type: "GET_SORT_VALUE", payload: userValue });
     }
 
+    // To load all products for Grid & List Views
     useEffect(() => {
         dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: allProducts });
     }, [allProducts]);
 
     // To Sort The Products
     useEffect(() => {
-        dispatch({ type: "SORTING_PRODUCTS", payload: allProducts });
-    }, [state.sorting_value]);
+        dispatch({ type: "SORTING_PRODUCTS" });
+    }, [allProducts, state.sorting_value]);
 
   return (
     <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting }}>
