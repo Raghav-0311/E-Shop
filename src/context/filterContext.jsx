@@ -34,6 +34,11 @@ export const FilterContextProvider = ({ children }) => {
         dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: allProducts });
     }, [allProducts]);
 
+    // To Sort The Products
+    useEffect(() => {
+        dispatch({ type: "SORTING_PRODUCTS", payload: allProducts });
+    }, [state.sorting_value]);
+
   return (
     <FilterContext.Provider value={{ ...state, setGridView, setListView, sorting }}>
       {children}

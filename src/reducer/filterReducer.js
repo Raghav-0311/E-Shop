@@ -28,6 +28,45 @@ const filterReducer = (state, action) => {
             sorting_value: sort_value,
         }
 
+    case "SORTING_PRODUCTS":
+        let newSortData;
+        let tempSortProduct = [...action.payload];
+
+        // Ascending Order - Price
+        if (state.sorting_value === "lowest") {
+            const sortingProducts = (a, b) => {
+                return a.price - b.price;
+            };
+            newSortData = tempSortProduct.sort(sortingProducts);
+        }
+
+        // Descending Order - Price
+        if (state.sorting_value === "highest") {
+            const sortingProducts = (a, b) => {
+                return b.price - a.price;
+            };
+            newSortData = tempSortProduct.sort(sortingProducts);
+        }
+
+        // Ascending Order - Name
+        if(state.sorting_value === "a-z") {
+            newSortData = tempSortProduct.sort((a, b) => 
+                a.name.localeCompare(b.name)
+            );
+        }
+
+        // Descending Order - Name
+        if(state.sorting_value === "z-a") {
+            newSortData = tempSortProduct.sort((a, b) => 
+                b.name.localeCompare(a.name)
+            );
+        }
+
+        return {
+            ...state,
+            filter_products: newSortData,
+        }
+
     default:
       return state;
   }
