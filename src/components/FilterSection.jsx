@@ -20,6 +20,7 @@ const FilterSection = () => {
   };
 
   const categoryOnlyData = getUniqueData(all_products, "category");
+  const brandOnlyData = getUniqueData(all_products, "brand");
 
   return (
     <Wrapper>
@@ -53,6 +54,30 @@ const FilterSection = () => {
             );
           })}
         </div>
+      </div>
+
+      <div className="filter-company">
+        <h3>Brand</h3>
+        <form action="#">
+          <select
+            name="brand"
+            id="brand"
+            className="filter-company--select"
+            onChange={updateFilterValue}
+          >
+            {brandOnlyData.map((curElem, index) => {
+              return (
+                <option 
+                  key={index} 
+                  value={curElem} 
+                  name="brand"
+                >
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
+        </form>
       </div>
     </Wrapper>
   );

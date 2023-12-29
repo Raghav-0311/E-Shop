@@ -76,7 +76,7 @@ const filterReducer = (state, action) => {
         let { all_products } = state;
         let tempFilterProduct = [...all_products];
 
-        const { text, category } = state.filters;
+        const { text, category, brand } = state.filters;
 
         if (text) {
             tempFilterProduct = tempFilterProduct.filter((curElem) => {
@@ -87,6 +87,12 @@ const filterReducer = (state, action) => {
         if (category !== "All") {
             tempFilterProduct = tempFilterProduct.filter((curElem) => {
                 return curElem.category === category;
+            })
+        }
+
+        if (brand !== "All") {
+            tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                return curElem.brand === brand;
             })
         }
 
