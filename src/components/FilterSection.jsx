@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { useFilterContext } from "../context/filterContext";
 
 const FilterSection = () => {
-  const { filters: { text }, all_products, updateFilterValue, } = useFilterContext();
+  const {
+    filters: { text, category },
+    all_products,
+    updateFilterValue,
+  } = useFilterContext();
 
   // Get the Unique Data of Each Field
   const getUniqueData = (data, property) => {
@@ -11,7 +15,7 @@ const FilterSection = () => {
       return curElem[property];
     });
     // console.log(newVal); // TESTED ✅
-    newVal = ["All", ... new Set(newVal)];
+    return (newVal = ["All", ...new Set(newVal)]);
     // console.log(newVal); // TESTED ✅
   };
 
@@ -29,6 +33,26 @@ const FilterSection = () => {
             placeholder="Search"
           />
         </form>
+      </div>
+
+      <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {categoryOnlyData.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                onClick={updateFilterValue}
+                className={curElem === category ? "active" : ""}
+              >
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   );
@@ -64,7 +88,7 @@ const Wrapper = styled.section`
 
       button {
         border: none;
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: transparent;
         text-transform: capitalize;
         cursor: pointer;
 
@@ -74,7 +98,7 @@ const Wrapper = styled.section`
       }
 
       .active {
-        border-bottom: 1px solid #000;
+        border-bottom: 2px solid ${({ theme }) => theme.colors.btn};
         color: ${({ theme }) => theme.colors.btn};
       }
     }
