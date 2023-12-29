@@ -133,6 +133,9 @@ const Wrapper = styled.section`
     padding: 0.3rem 1.2rem;
     font-size: 1.6rem;
     color: ${({ theme }) => theme.colors.text};
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #767676;
     text-transform: capitalize;
   }
 
