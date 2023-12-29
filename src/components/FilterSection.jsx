@@ -3,7 +3,19 @@ import styled from "styled-components";
 import { useFilterContext } from "../context/filterContext";
 
 const FilterSection = () => {
-  const { filters: { text }, updateFilterValue, } = useFilterContext();
+  const { filters: { text }, all_products, updateFilterValue, } = useFilterContext();
+
+  // Get the Unique Data of Each Field
+  const getUniqueData = (data, property) => {
+    let newVal = data.map((curElem) => {
+      return curElem[property];
+    });
+    // console.log(newVal); // TESTED ✅
+    newVal = ["All", ... new Set(newVal)];
+    // console.log(newVal); // TESTED ✅
+  };
+
+  const categoryOnlyData = getUniqueData(all_products, "category");
 
   return (
     <Wrapper>
