@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useFilterContext } from "../context/filterContext";
+import FormatPrice from "../helpers/FormatPrice";
 
 const FilterSection = () => {
   const {
-    filters: { text, category },
+    filters: { text, category, price, minPrice, maxPrice },
     all_products,
     updateFilterValue,
   } = useFilterContext();
@@ -67,17 +68,28 @@ const FilterSection = () => {
           >
             {brandOnlyData.map((curElem, index) => {
               return (
-                <option 
-                  key={index} 
-                  value={curElem} 
-                  name="brand"
-                >
+                <option key={index} value={curElem} name="brand">
                   {curElem}
                 </option>
               );
             })}
           </select>
         </form>
+      </div>
+
+      <div className="filter_price">
+        <h3>Price</h3>
+        <p>
+          <FormatPrice price={price} />
+        </p>
+        <input
+          type="range"
+          name="price"
+          min={minPrice}
+          max={maxPrice}
+          value={price}
+          onChange={updateFilterValue}
+        />
       </div>
     </Wrapper>
   );
@@ -194,6 +206,7 @@ const Wrapper = styled.section`
     background-color: #ec7063;
     color: #000;
   }
+
 `;
 
 export default FilterSection;
