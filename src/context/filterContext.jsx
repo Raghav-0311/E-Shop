@@ -13,6 +13,9 @@ const initialState = {
         text: "",
         category: "All",
         brand: "All",
+        maxPrice: 0,
+        price: 0,
+        minPrice: 0,
     },
 };
 

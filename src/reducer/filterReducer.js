@@ -1,10 +1,28 @@
 const filterReducer = (state, action) => {
   switch (action.type) {
     case "LOAD_FILTER_PRODUCTS":
+
+        let priceArr = action.payload.map((curElem) => curElem.price);
+        // console.log(priceArr); // TESTED ✅
+
+        // TO FIND THE LARGEST PRICE - 3 WAYS :
+
+        // 1st Way - using Math.max.apply() =>
+        // console.log(Math.max.apply(null, priceArr)); // TESTED - 729900 ✓
+
+        // 2nd Way - using Array.reduce() =>
+        // let maxPrice = priceArr?.reduce((acc, curElem) => Math.max(acc, curElem), 0);
+        // console.log(maxPrice); // TESTED - 729900 ✓
+
+        // 3rd Way - using spread operator with Math.max() =>
+        let maxPrice = Math.max( ...priceArr );
+        // console.log(maxPrice); // TESTED - 729900 ✓
+
       return {
         ...state,
         filter_products: [...action.payload],
         all_products: [...action.payload],
+        filters: { ...state.filters, maxPrice: maxPrice, price: maxPrice },
       };
 
     case "SET_GRID_VIEW":
