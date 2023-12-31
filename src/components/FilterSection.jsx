@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useFilterContext } from "../context/filterContext";
 import FormatPrice from "../helpers/FormatPrice";
+import { Button } from "../styles/Button.js";
 
 const FilterSection = () => {
   const {
     filters: { text, category, price, minPrice, maxPrice },
     all_products,
     updateFilterValue,
+    clearFilters,
   } = useFilterContext();
 
   // Get the Unique Data of Each Field
@@ -91,6 +93,12 @@ const FilterSection = () => {
           onChange={updateFilterValue}
         />
       </div>
+
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          Clear Filters
+        </Button>
+      </div>
     </Wrapper>
   );
 };
@@ -151,42 +159,6 @@ const Wrapper = styled.section`
     text-transform: capitalize;
   }
 
-  .filter-color-style {
-    display: flex;
-    justify-content: center;
-  }
-
-  .color-all--style {
-    background-color: transparent;
-    text-transform: capitalize;
-    border: none;
-    cursor: pointer;
-  }
-  .btnStyle {
-    width: 2rem;
-    height: 2rem;
-    background-color: #000;
-    border-radius: 50%;
-    margin-left: 1rem;
-    border: none;
-    outline: none;
-    opacity: 0.5;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .active {
-    opacity: 1;
-  }
-
-  .checkStyle {
-    font-size: 1rem;
-    color: #fff;
-  }
-
   .filter_price {
     input {
       margin: 0.5rem 0 1rem 0;
@@ -203,10 +175,102 @@ const Wrapper = styled.section`
   }
 
   .filter-clear .btn {
-    background-color: #ec7063;
-    color: #000;
+    background-color: #f31260;
+    /* color: ${({ theme }) => theme.colors.bg}; */
+    color: #f2eafa;
   }
 
+  input[type="range"] {
+    height: 32px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 0px #000000;
+    background: #7828c8;
+    border-radius: 5px;
+    border: 0px solid #000000;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 0px #000000;
+    border: 0px solid #000000;
+    height: 22px;
+    width: 22px;
+    border-radius: 20px;
+    background: #7828c8;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7.5px;
+  }
+  input[type="range"]:focus::-webkit-slider-runnable-track {
+    background: #7828c8;
+  }
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 0px #000000;
+    background: #7828c8;
+    border-radius: 5px;
+    border: 0px solid #000000;
+  }
+  input[type="range"]::-moz-range-thumb {
+    box-shadow: 1px 1px 0px #000000;
+    border: 0px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    background: #7828c8;
+    cursor: pointer;
+  }
+  input[type="range"]::-ms-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type="range"]::-ms-fill-lower {
+    background: #7828c8;
+    border: 0px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0px #000000;
+  }
+  input[type="range"]::-ms-fill-upper {
+    background: #7828c8;
+    border: 0px solid #000000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0px #000000;
+  }
+  input[type="range"]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 0px #000000;
+    border: 0px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    background: #7828c8;
+    cursor: pointer;
+  }
+  input[type="range"]:focus::-ms-fill-lower {
+    background: #7828c8;
+  }
+  input[type="range"]:focus::-ms-fill-upper {
+    background: #7828c8;
+  }
 `;
 
 export default FilterSection;
