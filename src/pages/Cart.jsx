@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useCartContext } from "../context/cartContext";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
 
@@ -17,6 +18,14 @@ const Cart = () => {
           <p>Remove</p>
         </div>
         <hr />
+
+        <div className="cart-item">
+          {
+            cart.map((curElem) => {
+              return <CartItem key={curElem._id} {...curElem} />;
+            })
+          }
+        </div>
       </div>
     </Wrapper>
   )
@@ -107,7 +116,7 @@ const Wrapper = styled.section`
     }
   }
 
-  .amount-toggle {
+  .quantity-toggle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,11 +125,11 @@ const Wrapper = styled.section`
 
     button {
       border: none;
-      background-color: #fff;
+      background-color: transparent;
       cursor: pointer;
     }
 
-    .amount-style {
+    .quantity-style {
       font-size: 2.4rem;
       color: ${({ theme }) => theme.colors.btn};
     }
