@@ -1,9 +1,23 @@
 import styled from "styled-components";
+import { useCartContext } from "../context/cartContext";
 
 const Cart = () => {
+
+  const { cart } = useCartContext();
+  // console.log(cart); // TESTED ✅
+
   return (
     <Wrapper>
-      <h1>Cart Page</h1>
+      <div className="container">
+        <div className="cart-heading grid grid-five-column">
+          <p>Item</p>
+          <p className="cart-hide">Price</p>
+          <p>Quantity</p>
+          <p className="cart-hide">Subtotal</p>
+          <p>Remove</p>
+        </div>
+        <hr />
+      </div>
     </Wrapper>
   )
 };
