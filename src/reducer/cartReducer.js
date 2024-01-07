@@ -50,6 +50,54 @@ const cartReducer = (state, action) => {
         }
     }
 
+    if (action.type === "SET_DECREMENT") {
+        let updatedProduct = state.cart.map((curElem) => {
+            if (curElem._id === action.payload) {
+                let decQuantity = curElem.quantity - 1;
+
+                if (decQuantity <= 1) {
+                    decQuantity = 1;
+                }
+
+                return {
+                    ...curElem,
+                    quantity: decQuantity,
+                };
+            } else {
+                return curElem;
+            }
+        });
+
+        return {
+            ...state,
+            cart: updatedProduct,
+        }
+    }
+
+    if (action.type === "SET_INCREMENT") {
+        let updatedProduct = state.cart.map((curElem) => {
+            if (curElem._id === action.payload) {
+                let incQuantity = curElem.quantity + 1;
+
+                if (incQuantity >= curElem.max) {
+                    incQuantity = curElem.max;
+                }
+
+                return {
+                    ...curElem,
+                    quantity: incQuantity,
+                };
+            } else {
+                return curElem;
+            }
+        });
+
+        return {
+            ...state,
+            cart: updatedProduct,
+        }
+    }
+
     if (action.type === "REMOVE_ITEM") {
 
         let updatedCart = state.cart.filter((curItem) => curItem._id !== action.payload);

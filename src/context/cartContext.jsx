@@ -5,16 +5,16 @@ const CartContext = createContext();
 
 // Get Data From User's Browser Local Storage
 const getLocalCartData = () => {
-    let localCartData = localStorage.getItem("User_eShop_Cart");
-    if (localCartData == []) {
-        return [];
-    } else {
-        return JSON.parse(localCartData);
-    }
-}
+  let localCartData = localStorage.getItem("User_eShop_Cart");
+  if (localCartData == []) {
+    return [];
+  } else {
+    return JSON.parse(localCartData);
+  }
+};
 
 const initialState = {
-//   cart: [],
+  //   cart: [],
   cart: getLocalCartData(),
   total_item: "",
   total_amount: "",
@@ -31,6 +31,16 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  // Increment the Product
+  const setQuantityIncrement = (_id) => {
+    dispatch({ type: "SET_INCREMENT", payload: _id });
+  };
+
+  // Decrement the Product
+  const setQuantityDecrement = (_id) => {
+    dispatch({ type: "SET_DECREMENT", payload: _id });
+  };
+
   // Remove Individual Item from cart
   const removeItem = (_id) => {
     dispatch({ type: "REMOVE_ITEM", payload: _id });
@@ -38,23 +48,32 @@ const CartProvider = ({ children }) => {
 
   // Add Data to User's Browser Local Storage
   useEffect(() => {
-    localStorage.setItem("User_eShop_Cart", JSON.stringify(state.cart))
+    localStorage.setItem("User_eShop_Cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
   // Clear Cart
   const clearCart = () => {
     dispatch({ type: "CLEAR_CART" });
-  }
+  };
 
   return (
-    <CartContext.Provider value={{ ...state, addToCart, removeItem, clearCart }}>
+    <CartContext.Provider
+      value={{
+        ...state,
+        addToCart,
+        removeItem,
+        clearCart,
+        setQuantityDecrement,
+        setQuantityIncrement,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
 const useCartContext = () => {
-    return useContext(CartContext);
+  return useContext(CartContext);
 };
 
 export { CartProvider, useCartContext };
