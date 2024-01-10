@@ -6,7 +6,7 @@ const CartContext = createContext();
 // Get Data From User's Browser Local Storage
 const getLocalCartData = () => {
   let localCartData = localStorage.getItem("User_eShop_Cart");
-  if (localCartData == []) {
+  if (localCartData == [] || localCartData == null) {
     return [];
   } else {
     return JSON.parse(localCartData);
@@ -14,7 +14,7 @@ const getLocalCartData = () => {
 };
 
 const initialState = {
-  //   cart: [],
+    // cart: [],
   cart: getLocalCartData(),
   total_item: "",
   total_amount: "",
