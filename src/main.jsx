@@ -6,6 +6,9 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { AppProvider } from "./context/productContext.jsx";
 import { FilterContextProvider } from "./context/filterContext.jsx";
 import { CartProvider } from "./context/cartContext.jsx";
+// import 'dotenv/config'; // UNKNOWN ERROR 
+// const domain = process.env.DOMAIN; // process is not defined
+// const clientId = process.env.CLIENT_ID; // process is not defined
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Auth0Provider
